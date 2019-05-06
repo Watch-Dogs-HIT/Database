@@ -35,5 +35,5 @@ Linux远程主机及进程状态监测系统 - 数据存储设计
 加密+预先设定的密钥
 
 ### 设计
-![](https://upload-images.jianshu.io/upload_images/5617720-724cf0005d0cf0c5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](Watch_Dogs.png)
 
