@@ -1,7 +1,7 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : HouJie Test @ 202
+ Source Server         : Watch_Dogs
  Source Server Type    : MySQL
  Source Server Version : 80013
  Source Host           : 10.245.146.202:3306
@@ -11,7 +11,7 @@
  Target Server Version : 80013
  File Encoding         : 65001
 
- Date: 01/06/2019 16:49:27
+ Date: 14/06/2019 16:26:18
 */
 
 SET NAMES utf8mb4;
@@ -37,7 +37,7 @@ CREATE TABLE `Alert_rule`  (
   `net_download_kbps_gt` int(255) NULL DEFAULT -1 COMMENT '下载速度大于',
   `log_key_words` char(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '进程日志关键词',
   `last_relate_record_id` int(255) NULL DEFAULT -1 COMMENT '最后一次触发告警对应记录ID',
-  `update_time` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '告警规则更新时间',
+  `update_time` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '告警规则更新时间',
   PRIMARY KEY (`alert_id`) USING BTREE,
   UNIQUE INDEX `UNI`(`user_id`, `host_id`, `process_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 128 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
@@ -61,7 +61,7 @@ CREATE TABLE `Host_info`  (
   `default_net_device` char(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '默认网卡',
   `intranet_ip` char(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '内网ip',
   `extranet_ip` char(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '外网ip',
-  `update_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  `update_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '更新时间',
   PRIMARY KEY (`host_id`) USING BTREE,
   UNIQUE INDEX `UNI`(`host`, `user`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
@@ -87,9 +87,9 @@ CREATE TABLE `Host_record`  (
   `nr` char(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '系统负载比例',
   `free_rate` float(255, 4) NOT NULL DEFAULT 0.0000 COMMENT '系统空闲率',
   `uptime` char(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '系统启动时间',
-  `record_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '记录时间',
+  `record_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '记录时间',
   PRIMARY KEY (`record_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 17482 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 24493 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for Process
@@ -108,7 +108,7 @@ CREATE TABLE `Process`  (
   `log_path` char(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '日志目录',
   `process_path` char(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '进程目录',
   `start_com` char(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '进程启动命令',
-  `update_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '记录更新时间',
+  `update_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '记录更新时间',
   PRIMARY KEY (`process_id`) USING BTREE,
   UNIQUE INDEX `UNI`(`host_id`, `pid`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 43 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
@@ -126,9 +126,9 @@ CREATE TABLE `Process_record`  (
   `write_MBs` float(255, 2) NOT NULL DEFAULT 0.00 COMMENT '写入速度',
   `net_upload_kbps` float(255, 2) NOT NULL DEFAULT 0.00 COMMENT '上传速度',
   `net_download_kbps` float(255, 2) NOT NULL DEFAULT 0.00 COMMENT '下载速度',
-  `record_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '记录时间',
+  `record_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '记录时间',
   PRIMARY KEY (`record_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 38223 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 46742 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for User
@@ -141,7 +141,7 @@ CREATE TABLE `User`  (
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '密码',
   `email` char(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '绑定邮箱',
   `status` tinyint(4) NOT NULL DEFAULT 1 COMMENT '用户状态',
-  `registration_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '注册时间',
+  `registration_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '注册时间',
   `last_login_time` datetime(0) NULL DEFAULT NULL COMMENT '最后登录时间',
   PRIMARY KEY (`user_id`) USING BTREE,
   UNIQUE INDEX `UNI_user`(`user`) USING BTREE
@@ -157,7 +157,7 @@ CREATE TABLE `User_Host`  (
   `host_id` int(11) NOT NULL COMMENT '主机id',
   `comment` char(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '主机备注',
   `type` char(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '主机类型',
-  `relation_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '关系建立时间',
+  `relation_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '关系建立时间',
   PRIMARY KEY (`relation_id`) USING BTREE,
   UNIQUE INDEX `UNI`(`user_id`, `host_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
@@ -173,7 +173,7 @@ CREATE TABLE `User_Process`  (
   `process_id` int(11) NOT NULL COMMENT '进程id',
   `comment` char(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '备注',
   `type` char(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '进程类型',
-  `relation_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '关系建立时间',
+  `relation_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '关系建立时间',
   PRIMARY KEY (`relation_id`) USING BTREE,
   UNIQUE INDEX `UNI`(`user_id`, `host_id`, `process_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
